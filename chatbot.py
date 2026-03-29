@@ -698,5 +698,5 @@ if __name__ == "__main__":
         print("\n[Server] Starting Flask web server on http://localhost:5000")
         print("[Server] Visit http://localhost:5000 to open the chat UI")
         print("[Server] Or run:  python chatbot.py --console  for terminal mode\n")
-        ##app.run(port=5000, debug=False)
+       # app.run(port=5000, debug=False)
         app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))

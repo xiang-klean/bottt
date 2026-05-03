@@ -6,10 +6,6 @@ import math
 import random
 import sys
 from collections import Counter
-
-# ============================================================
-#  FLASK WEB SERVER  (NEW)
-# ============================================================
 from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
 import os
@@ -17,9 +13,6 @@ import os
 app = Flask(__name__, static_folder=".")
 CORS(app)
 
-# ============================================================
-#  FIREBASE CONFIG
-# ============================================================
 cred = credentials.Certificate("serviceAccountKey.json")
 if not firebase_admin._apps:
     firebase_admin.initialize_app(cred)
@@ -29,11 +22,6 @@ COL_INTENTS   = "intents"
 COL_PATTERNS  = "training_data"
 COL_RESPONSES = "responses"
 COL_HISTORY   = "chat_history"
-
-
-# ============================================================
-#  1. DATABASE LAYER (Firebase Firestore)
-# ============================================================
 
 def init_db():
     print("[DB] Firebase Firestore ready.")
@@ -354,10 +342,6 @@ def get_db_stats():
     }
 
 
-# ============================================================
-#  2. NLP LAYER
-# ============================================================
-
 STOPWORDS = {
     "a","an","the","is","are","was","were","be","been","to","of","in",
     "for","on","with","at","by","from","i","me","my","we","you","he",
@@ -386,11 +370,6 @@ def preprocess(text):
     tokens = remove_stopwords(tokens)
     tokens = [stem(t) for t in tokens]
     return tokens
-
-
-# ============================================================
-#  3. ML LAYER — TF-IDF + Cosine + Keyword Boost
-# ============================================================
 
 KEYWORD_MAP = {
     "python":          "python_basics",

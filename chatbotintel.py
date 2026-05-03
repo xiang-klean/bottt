@@ -685,4 +685,4 @@ if __name__ == "__main__":
         print("[Server] Visit http://localhost:5000 to open the chat UI")
         print("[Server] Or run:  python chatbot.py --console  for terminal mode\n")
        # app.run(port=5000, debug=False)
-        app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
+        app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)), debug=False)

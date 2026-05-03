@@ -9,14 +9,19 @@ from collections import Counter
 from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
 import os
+import json
 
 app = Flask(__name__, static_folder=".")
 CORS(app)
 
-cred = credentials.Certificate("serviceAccountKey.json")
+creds_json = os.environ.get("GOOGLE_APPLICATION_CREDENTIALS_JSON")
+if creds_json:
+    cred = credentials.Certificate(json.loads(creds_json))
+else:
+    cred = credentials.Certificate("serviceAccountKey.json")
+
 if not firebase_admin._apps:
     firebase_admin.initialize_app(cred)
-db = firestore.client()
 
 COL_INTENTS   = "intents"
 COL_PATTERNS  = "training_data"

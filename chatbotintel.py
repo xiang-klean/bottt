@@ -23,6 +23,8 @@ else:
 if not firebase_admin._apps:
     firebase_admin.initialize_app(cred)
 
+db = firestore.client()
+
 COL_INTENTS   = "intents"
 COL_PATTERNS  = "training_data"
 COL_RESPONSES = "responses"
